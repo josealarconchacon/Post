@@ -2,6 +2,9 @@ mat-form-field,
 textarea {
   width: 100%;
 }
+mat-error {
+  text-align: center;
+}
 
 button,
 mat-raised-button {
