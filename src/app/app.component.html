@@ -1,5 +1,8 @@
 <app-header></app-header>
 <main>
-  <app-post-create></app-post-create>
-  <app-post-list></app-post-list>
+  <!-- listen to postCreatedEventEmitter event by adding a post  -->
+  <app-post-create
+    (postCreatedEventEmitter)="onPostAdded($event)"
+  ></app-post-create>
+  <app-post-list [postList]="storedPost"></app-post-list>
 </main>
