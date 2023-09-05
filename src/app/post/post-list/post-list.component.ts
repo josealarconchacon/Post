@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Post } from '../post.model';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post-list',
@@ -15,6 +16,12 @@ export class PostListComponent {
   //   { title: 'Post 3', content: 'Content of post #3' },
   // ];
 
+  // Properties
   // Bind to postList from the parent component AppComponent()
   @Input() postList: Post[] = [];
+  postService: PostService;
+
+  constructor(public postsService: PostService) {
+    this.postService = postsService;
+  }
 }
