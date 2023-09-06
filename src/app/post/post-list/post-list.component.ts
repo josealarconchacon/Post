@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
@@ -8,7 +8,7 @@ import { PostService } from '../post.service';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css'],
 })
-export class PostListComponent {
+export class PostListComponent implements OnInit {
   // dummy data test
   // postList = [
   //   { title: 'Post 1', content: 'Content of post #1' },
@@ -17,11 +17,12 @@ export class PostListComponent {
   // ];
 
   // Properties
-  // Bind to postList from the parent component AppComponent()
-  @Input() postList: Post[] = [];
-  postService: PostService;
+  // Bind to posts from the parent component AppComponent()
+  @Input() posts: Post[] = [];
 
-  constructor(public postsService: PostService) {
-    this.postService = postsService;
+  constructor(public postsService: PostService) {}
+
+  ngOnInit(): void {
+    this.posts = this.postsService.getPosts();
   }
 }

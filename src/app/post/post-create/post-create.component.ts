@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Post } from '../post.model';
 import { NgForm } from '@angular/forms';
 import { from } from 'rxjs';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post-create',
@@ -14,19 +14,14 @@ export class PostCreateComponent {
   enteredTitle = '';
   enteredContent = '';
 
-  @Output() postCreatedEventEmitter = new EventEmitter<Post>();
+  constructor(public postService: PostService) {}
 
   onAddPost(form: NgForm) {
     // validate form
     if (form.invalid) {
       return;
     }
-    // create a new post
-    const newPost: Post = {
-      title: form.value.title,
-      content: form.value.content,
-    };
     // emit a new event and pass newPost as a argument
-    this.postCreatedEventEmitter.emit(newPost);
+    this.postService.addPost(form.value.title, form.value.content);
   }
 }
